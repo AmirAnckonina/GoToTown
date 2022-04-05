@@ -4,6 +4,9 @@
 void FindPathsProgram::run()
 {
 	InputProcedure();
+	//GetToTown
+
+	//Should be returned -> AccessibleCities (namely, Linked-List without pointers)
 }
 
 void FindPathsProgram::InputProcedure()
