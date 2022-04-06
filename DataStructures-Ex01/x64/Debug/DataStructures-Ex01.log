@@ -1,5 +1,4 @@
-﻿  AccessibleCitiesGroup.cpp
-  City.cpp
+﻿  City.cpp
   Country.cpp
   FindPathsProgram.cpp
   Main.cpp
