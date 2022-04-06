@@ -4,6 +4,9 @@
 void FindPathsProgram::run()
 {
 	InputProcedure();
+	//GetToTown
+
+	//Should be returned -> AccessibleCities (namely, Linked-List without pointers)
 }
 
 void FindPathsProgram::InputProcedure()
@@ -18,11 +21,11 @@ void FindPathsProgram::InputProcedure()
 
 	//------------------------------------//
 
-	vector<pair<int, int>> cityPairs(nRoads,std::make_pair(0, 0));
+	vector<pair<int, int>> cityPairs(nRoads, std::make_pair(0, 0));
 
 	cout << "Please enter " << nRoads;
 	cout << " pairs of cities (i.e.: A B), so each pair represent one-direction road from A to B: " << endl;
-	
+
 	for (int index = 0; index < nRoads; index++)
 	{
 		//Add input check
@@ -32,5 +35,5 @@ void FindPathsProgram::InputProcedure()
 		//Another vector check
 	}
 
-	//FillCountryStructureByCityPairs(cityPairs);
+	m_Country.FillCountryStructureByCityPairs(cityPairs);
 }

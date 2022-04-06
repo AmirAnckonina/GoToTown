@@ -1,5 +1,9 @@
 #pragma once
 #include "City.h"
+#include <iostream>
+#include <vector>
+
+using namespace std;
 
 class Country
 {
@@ -17,5 +21,6 @@ public:
 	void SetNumOfRoads(int i_NumOfRoads) { m_NumOfRoads = i_NumOfRoads; }
 	int GetNumOfRoads() { return m_NumOfCities; }
 	void AssignCountryStructure();
+	void FillCountryStructureByCityPairs(vector<pair<int, int>> i_CityPairs);
 
 };
