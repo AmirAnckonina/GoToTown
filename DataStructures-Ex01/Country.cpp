@@ -27,11 +27,11 @@ void Country::FillCountryStructureByCityPairs(vector<pair<int, int>> i_CityPairs
 		int fromCityNum = currRoad.first, toCityNum = currRoad.second;
 
 		if (currRoad != nullRoad)
-		{   // Need to check if adjacent city already exist in list ?!
-			MyList currCityList = m_CountryStructure[fromCityNum - 1].m_AdjacentCities; // Getting the adjacent cities list of current city.
+		{
+			//MyList currCityList = m_CountryStructure[fromCityNum - 1].m_AdjacentCities; // Getting the adjacent cities list of current city.
 			ListNode* newCityNode = new ListNode(toCityNum); // New list node contain the ajdacent city number.
 
-			currCityList.InsertAfter(newCityNode, currCityList.GetTail()); // Adding the adjacent city to the current adjacent cities list.
+			m_CountryStructure[fromCityNum - 1].m_AdjacentCities.InsertAfter(newCityNode, m_CountryStructure[fromCityNum - 1].m_AdjacentCities.GetTail()); // Adding the adjacent city to the current adjacent cities list.
 		}
 	}
 }
