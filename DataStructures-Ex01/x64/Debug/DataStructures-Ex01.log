@@ -1,6 +1,11 @@
-﻿  City.cpp
+﻿  AccessibleCitiesGroup.cpp
+  City.cpp
   Country.cpp
   FindPathsProgram.cpp
+C:\Users\dsapt\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Repositories\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(15,13): warning C4101: 'nRoads': unreferenced local variable
+C:\Users\dsapt\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Repositories\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(15,6): warning C4101: 'nCity': unreferenced local variable
+C:\Users\dsapt\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Repositories\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(87,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ListNode.cpp
   Main.cpp
 C:\Users\dsapt\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Repositories\DataStructersEx01\DataStructures-Ex01\Main.cpp(4,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
   MyList.cpp
