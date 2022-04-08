@@ -4,7 +4,7 @@
 void FindPathsProgram::run()
 {
 	InputProcedure();
-	
+
 	AccessibleGroup accessibleGrp = GetToTownWrapper();
 	//GetToTown
 
@@ -22,60 +22,33 @@ AccessibleGroup FindPathsProgram::GetToTownWrapper()
 
 void FindPathsProgram::InputProcedure()
 {
-	string inputRow;
-
-	//NumOfCitiesAndRoadsInput();
-
-	int nCity, nRoads;
-
-	cout << "Please enter the number of cities in the country, and the number of the roads, separeted by space: " << endl;
-
-	getline(cin, inputRow);
-	if (!GetNumOfCitiesAndRoads(inputRow))
-	{
-		cout << "invalid input" << endl;
-		exit(0);
-	}
-
-	m_Country.AssignCountryStructure();
-	//-----------------------------------------------------------------//
-
-	//RoadsInput();
-
 	vector<pair<int, int>> cityPairs;
 
-	cout << "Please enter " << m_Country.GetNumOfRoads();
-	cout << " pairs of cities (i.e.: A B), so each pair represent one-direction road from A to B: " << endl;
+	GetNumOfCitiesAndRoads();
 
-	getline(cin, inputRow);
-	if (!InitCityPairsRoadsFromString(cityPairs, m_Country.GetNumOfRoads(), inputRow))
-	{
-		cout << "invalid input" << endl;
-		exit(0);
-	}
+	m_Country.AssignCountryStructure();
+
+	InitCityPairsRoadsFromUser(cityPairs, m_Country.GetNumOfRoads());
 
 	m_Country.FillCountryStructureByCityPairs(cityPairs);
 
-	//MokedInput
-	//To check:
-	// If the input is a digit
-	// If the moked number is in the correct range of cities
-	cout << "Please enter the city center: ";
-	////cin >> inputRow;
-	//getline(cin, inputRow);
-	//if (GetNumberFromIndexInString(inputRow, ))
-
+	GetCityCenterNumberFromUser();
 }
 
 
-bool FindPathsProgram::GetNumOfCitiesAndRoads(string i_InputRow)
+void FindPathsProgram::GetNumOfCitiesAndRoads()
 {
-	int index = 0;
+	string inputRow;
+
+	int strIndex = 0;
 	int nCities = 0, mRoads = 0;
 	bool isValidInput = true;
 
-	nCities = GetNumberFromIndexInString(i_InputRow, index);
-	mRoads = GetNumberFromIndexInString(i_InputRow, index);
+	cout << "Please enter the number of cities in the country, and the number of the roads, separeted by space: " << endl;
+	getline(cin, inputRow);
+
+	nCities = GetNumberFromIndexInString(inputRow, strIndex);
+	mRoads = GetNumberFromIndexInString(inputRow, strIndex);
 
 	if (nCities != NOT_VALID && mRoads != NOT_VALID)
 	{
@@ -83,54 +56,73 @@ bool FindPathsProgram::GetNumOfCitiesAndRoads(string i_InputRow)
 		m_Country.SetNumOfRoads(mRoads);
 	}
 	else
-		isValidInput = false;
-
-	return isValidInput;
+		InvalidExit();
 }
 
-bool FindPathsProgram::InitCityPairsRoadsFromString(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads, string i_InputRow)
+void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads)
 {
+	string inputRow;
 	int strIndex = 0;
+
+	cout << "Please enter " << m_Country.GetNumOfRoads();
+	cout << " pairs of cities (i.e.: A B), so each pair represent one-direction road from A to B: " << endl;
+	getline(cin, inputRow);
 
 	for (int index = 0; index < i_NumOfRoads; index++)
 	{
-		int fromCity = GetNumberFromIndexInString(i_InputRow, strIndex);
-		int toCity = GetNumberFromIndexInString(i_InputRow, strIndex);
+		int fromCity = GetNumberFromIndexInString(inputRow, strIndex);
+		int toCity = GetNumberFromIndexInString(inputRow, strIndex);
 
 		//Adding check if the cities is in the country range.
 		if (fromCity == NOT_VALID || toCity == NOT_VALID || IsRoadExist(i_CityPairs, { fromCity, toCity }))
-			return false;
-
-		i_CityPairs.push_back({fromCity, toCity});
+			InvalidExit();
+		else
+			i_CityPairs.push_back({ fromCity, toCity });
 	}
-
-	return true;
 }
 
-int FindPathsProgram::GetNumberFromIndexInString(string i_Str, int& index)
+void FindPathsProgram::GetCityCenterNumberFromUser()
+{
+	string inputRow;
+	int index = 0;
+
+	cout << "Please enter the city center: ";
+	getline(cin, inputRow);
+
+	int cityCenterNum = GetNumberFromIndexInString(inputRow, index); // Needs to be VALID
+
+	if (cityCenterNum != NOT_VALID && IsNumInRange(cityCenterNum, 1, m_Country.GetNumOfCities()))
+		m_CityCenter = cityCenterNum;
+	else
+		InvalidExit();
+
+}
+
+int FindPathsProgram::GetNumberFromIndexInString(string i_Str, int& io_Index)
 {
 	int num = 0;
 	int strLen = i_Str.length();
 
-	while (index < strLen && i_Str[index] == ' ')
-		index++;
+	while (io_Index < strLen && i_Str[io_Index] == ' ')
+		io_Index++;
 
-	if (index == strLen || !IsADigit(i_Str[index]))
+	if (io_Index == strLen || !IsADigit(i_Str[io_Index]))
 		return NOT_VALID;
 
-	while (index < strLen && IsADigit(i_Str[index]))
+	while (io_Index < strLen && IsADigit(i_Str[io_Index]))
 	{
 		num *= 10;
-		num += i_Str[index] - '0';
-		index++;
+		num += i_Str[io_Index] - '0';
+		io_Index++;
 	}
 
 	return num;
 }
 
-bool FindPathsProgram::IsADigit(char ch)
+
+bool FindPathsProgram::IsADigit(char i_Char)
 {
-	return (ch >= '0' && ch <= '9');
+	return (i_Char >= '0' && i_Char <= '9');
 }
 
 bool FindPathsProgram::IsRoadExist(vector<pair<int, int>> i_CityPairs, pair<int, int> i_RoadPair)
@@ -141,4 +133,14 @@ bool FindPathsProgram::IsRoadExist(vector<pair<int, int>> i_CityPairs, pair<int,
 			return true;
 	}
 	return false;
+}
+
+bool FindPathsProgram::IsNumInRange(int i_Num, int i_From, int i_To) {
+	return (i_Num >= i_From && i_Num <= i_To);
+}
+
+void  FindPathsProgram::InvalidExit()
+{
+	cout << "invalid input" << endl;
+	exit(0);
 }

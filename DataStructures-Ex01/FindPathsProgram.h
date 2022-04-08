@@ -24,11 +24,16 @@ public:
 	void InputProcedure();
 	AccessibleGroup GetToTownWrapper();
 	//void GetToTown();
-	bool GetNumOfCitiesAndRoads(string i_InputRow);
-	bool InitCityPairsRoadsFromString(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads, string i_InputRow);
+	void GetNumOfCitiesAndRoads();
+	void InitCityPairsRoadsFromUser(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads);
+	void GetCityCenterNumberFromUser();
 	int GetNumberFromIndexInString(string i_Str, int& index);
 	bool IsADigit(char ch);
 	bool IsRoadExist(vector<pair<int, int>> i_CityPairs, pair<int, int> i_RoadPair);
+
+	bool IsNumInRange(int num, int from, int to);
+
+	void InvalidExit();
 
 
 };
