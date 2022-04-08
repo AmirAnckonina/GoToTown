@@ -11,10 +11,10 @@ void Country::AssignCountryStructure()
 {
 	m_CountryStructure = new City[m_NumOfCities];
 
-	//Init cities numbers in city structure.
-	for (int index = 0; index < m_NumOfCities; index++) {
-		m_CountryStructure[index].m_CityNumber = index + 1; //Cities numbers between 1->n.
-	}
+	//Fill cities numbers in city structure.
+	for (int index = 0; index < m_NumOfCities; index++) 
+		m_CountryStructure[index].SetCityNumber(index + 1); //Cities numbers between 1->n.
+	
 }
 
 void Country::FillCountryStructureByCityPairs(vector<pair<int, int>> i_CityPairs)
@@ -30,8 +30,8 @@ void Country::FillCountryStructureByCityPairs(vector<pair<int, int>> i_CityPairs
 		{
 			//MyList currCityList = m_CountryStructure[fromCityNum - 1].m_AdjacentCities; // Getting the adjacent cities list of current city.
 			ListNode* newCityNode = new ListNode(toCityNum); // New list node contain the ajdacent city number.
-
-			m_CountryStructure[fromCityNum - 1].m_AdjacentCities.InsertAfter(newCityNode, m_CountryStructure[fromCityNum - 1].m_AdjacentCities.GetTail()); // Adding the adjacent city to the current adjacent cities list.
+			ListNode* currAdjCityTail = m_CountryStructure[fromCityNum - 1].m_AdjacentCities.GetTail();
+			m_CountryStructure[fromCityNum - 1].m_AdjacentCities.InsertAfter(newCityNode, currAdjCityTail); // Adding the adjacent city to the current adjacent cities list.
 		}
 	}
 }

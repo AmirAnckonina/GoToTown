@@ -139,7 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AccessibleCitiesGroup.h" />
+    <ClInclude Include="AccessibleGroup.h" />
+    <ClInclude Include="AccessibleCityNode.h" />
     <ClInclude Include="City.h" />
     <ClInclude Include="Country.h" />
     <ClInclude Include="FindPathsProgram.h" />
@@ -147,7 +148,8 @@
     <ClInclude Include="MyList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AccessibleCitiesGroup.cpp" />
+    <ClCompile Include="AccessibleGroup.cpp" />
+    <ClCompile Include="AccessibleCityNode.cpp" />
     <ClCompile Include="City.cpp" />
     <ClCompile Include="Country.cpp" />
     <ClCompile Include="FindPathsProgram.cpp" />

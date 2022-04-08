@@ -19,7 +19,7 @@ public:
 	void SetNumOfCities(int i_NumOfCities) { m_NumOfCities = i_NumOfCities; }
 	int GetNumOfCities() { return m_NumOfCities; }
 	void SetNumOfRoads(int i_NumOfRoads) { m_NumOfRoads = i_NumOfRoads; }
-	int GetNumOfRoads() { return m_NumOfCities; }
+	int GetNumOfRoads() { return m_NumOfRoads; }
 	void AssignCountryStructure();
 	void FillCountryStructureByCityPairs(vector<pair<int, int>> i_CityPairs);
 
