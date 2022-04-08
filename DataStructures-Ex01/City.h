@@ -8,10 +8,11 @@ class City
 
 private:
 
+	friend class Country;
+
 	int m_CityNumber;
 	MyList m_AdjacentCities;
 
-	friend class Country;
 
 public:
 

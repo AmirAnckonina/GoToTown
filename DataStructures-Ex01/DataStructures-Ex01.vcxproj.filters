@@ -30,7 +30,10 @@
     <ClInclude Include="FindPathsProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AccessibleCitiesGroup.h">
+    <ClInclude Include="AccessibleGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AccessibleCityNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,7 +56,10 @@
     <ClCompile Include="FindPathsProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AccessibleCitiesGroup.cpp">
+    <ClCompile Include="AccessibleGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AccessibleCityNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

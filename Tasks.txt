@@ -1,0 +1,5 @@
+1. Build input procedure to "Moked"
+2. Divide input input procedure function to 3 - sub functions
+3. adding check in "InitCityPairs..." for city number range.
+4. Validate input procedure and country structre fill .
+5. Build Wrapper and GetToTown function
