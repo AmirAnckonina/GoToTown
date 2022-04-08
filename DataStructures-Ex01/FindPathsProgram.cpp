@@ -11,10 +11,23 @@ void FindPathsProgram::run()
 	//Should be returned -> AccessibleCities (namely, Linked-List without pointers)
 }
 
+eColors * FindPathsProgram::InitCitiesColors()
+{
+	eColors * citiesColors = new eColors[m_Country.GetNumOfCities()];
+	for (int ind = 0; ind < m_Country.GetNumOfCities(); ind++)
+		citiesColors[ind] = WHITE;
+
+	return citiesColors;
+}
+
 AccessibleGroup FindPathsProgram::GetToTownWrapper()
 {
 	AccessibleGroup accessibleGrp;
+	//int * citiesColor = new int[m_Country.GetNumOfCities()];
 	//Create colors array for the cities in the country
+	eColors* citiesColors = InitCitiesColors();
+	InitCitiesColors(citiesColors);
+
 	//Recursive implementaion 
 	//GetToTown();
 	return accessibleGrp;
@@ -65,6 +78,10 @@ void FindPathsProgram::InputProcedure()
 	//getline(cin, inputRow);
 	//if (GetNumberFromIndexInString(inputRow, ))
 
+}
+
+void FindPathsProgram::InitCitiesColors(eColors i_CitiesColors)
+{
 }
 
 

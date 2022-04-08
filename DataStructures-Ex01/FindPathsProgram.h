@@ -9,11 +9,13 @@
 
 //#define NOT_VALID -1
 
+
 class FindPathsProgram
 {
 
 private:
 	const int NOT_VALID = -1;
+	enum eColors {BLACK, WHITE};
 
 	Country m_Country;
 	int m_CityCenter;
@@ -22,8 +24,10 @@ public:
 
 	void run();
 	void InputProcedure();
+	void BuildCitiesColorsArr(eColors* i_CitiesColors);
+
 	AccessibleGroup GetToTownWrapper();
-	//void GetToTown();
+	void GetToTown();
 	bool GetNumOfCitiesAndRoads(string i_InputRow);
 	bool InitCityPairsRoadsFromString(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads, string i_InputRow);
 	int GetNumberFromIndexInString(string i_Str, int& index);
