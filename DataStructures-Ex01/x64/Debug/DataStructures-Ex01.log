@@ -1,5 +1,1 @@
-﻿  FindPathsProgram.cpp
-C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\GIT_DS\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(29,13): warning C4101: 'nRoads': unreferenced local variable
-C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\GIT_DS\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(29,6): warning C4101: 'nCity': unreferenced local variable
-C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\GIT_DS\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(113,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  DataStructures-Ex01.vcxproj -> C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\GIT_DS\DataStructersEx01\x64\Debug\DataStructures-Ex01.exe
+﻿  DataStructures-Ex01.vcxproj -> C:\Users\dsapt\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Repositories\DataStructersEx01\x64\Debug\DataStructures-Ex01.exe
