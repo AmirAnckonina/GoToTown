@@ -5,7 +5,12 @@ void FindPathsProgram::run()
 {
 	InputProcedure();
 
-	AccessibleGroup accessibleGrp = GetToTownWrapper();
+	m_CitiesColorsRecursion = BuildCitiesColorsArr();
+	m_AccessGrpRecursion.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
+	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
+	m_CitiesColorsIterative = BuildCitiesColorsArr();
+	//GetToTownIterative();
+
 	//GetToTown
 
 	//Should be returned -> AccessibleCities (namely, Linked-List without pointers)
@@ -23,19 +28,30 @@ eColors* FindPathsProgram::BuildCitiesColorsArr()
 	return citiesColorsArr;
 }
 
-AccessibleGroup FindPathsProgram::GetToTownWrapper()
+void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
 {
-	AccessibleGroup accessibleGrp;
-	eColors* citiesColors = BuildCitiesColorsArr();
-	//Recursive implementaion 
-	//GetToTown(m_Country, m_CityCenter);
-	return accessibleGrp;
+	int currCityNum = i_CurrCityCenter.GetCityNumber();
+	MyList cityAdjacentList = i_CurrCityCenter.GetAdjacentCitiesList();
+	ListNode* currNodeInAdjCity = cityAdjacentList.GetDHead()->GetNextNode();
+	int neighborCityNum;
+
+	m_CitiesColorsRecursion[currCityNum - 1] = eColors::BLACK;
+	m_AccessGrpRecursion.AddCityToList(currCityNum);
+
+	while (currNodeInAdjCity != NULL) 
+	{
+		neighborCityNum = currNodeInAdjCity->GetNeighborCityNumber();
+		if (m_CitiesColorsRecursion[neighborCityNum - 1] == eColors::WHITE)
+		{
+			GetToTownRecursion( m_Country.GetCityFromCountryStructure(neighborCityNum) );
+		}
+
+		currNodeInAdjCity = currNodeInAdjCity->GetNextNode();
+	}
+
+	return;
 }
 
-void FindPathsProgram::GetToTown(const Country& i_Country,const City& i_CurrCityCenter, eColors& io_CitiesColors, AccessibleGroup& io_AccessGrp)
-{
-	//Implement 
-}
 
 void FindPathsProgram::InputProcedure()
 {

@@ -19,15 +19,19 @@ public:
 private:
 	Country m_Country;
 	int m_CityCenter;
+	AccessibleGroup m_AccessGrpRecursion;
+	AccessibleGroup m_AccessGrpIterative;
+	eColors* m_CitiesColorsRecursion;
+	eColors* m_CitiesColorsIterative;
+
 
 public:
 	void run();
 	void InputProcedure();
 	//void BuildCitiesColorsArr(eColors& i_CitiesColors);
 	eColors* BuildCitiesColorsArr();
-	
-	AccessibleGroup GetToTownWrapper();
-	void GetToTown(const Country& i_Country, const City& i_CurrCityCenter, eColors& io_CitiesColors, AccessibleGroup* io_AccessGrp);
+	void GetToTownRecursion(const City& i_CurrCityCenter);
+	void GetToTownIterative();
 	void GetNumOfCitiesAndRoads();
 	void InitCityPairsRoadsFromUser(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads);
 	void GetCityCenterNumberFromUser();
