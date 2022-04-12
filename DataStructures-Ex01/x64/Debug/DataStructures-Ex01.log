@@ -1,1 +1,12 @@
-﻿  DataStructures-Ex01.vcxproj -> C:\Users\dsapt\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Repositories\DataStructersEx01\x64\Debug\DataStructures-Ex01.exe
+﻿  AccessibleGroup.cpp
+  AccessibleCityNode.cpp
+  City.cpp
+  Country.cpp
+  FindPathsProgram.cpp
+C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\GIT_DS\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(123,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ListNode.cpp
+  Main.cpp
+C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\GIT_DS\DataStructersEx01\DataStructures-Ex01\Main.cpp(4,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  MyList.cpp
+  Generating Code...
+  DataStructures-Ex01.vcxproj -> C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\GIT_DS\DataStructersEx01\x64\Debug\DataStructures-Ex01.exe
