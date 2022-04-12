@@ -6,7 +6,6 @@ private:
 
 	int m_NeighborCityNumber = 0;
 	ListNode* m_NextNode;
-
 	friend class MyList;
 
 public:
@@ -15,4 +14,5 @@ public:
 	ListNode(int i_NeighborCityNumber, ListNode* i_NodePtr = nullptr);
 
 	int GetNeighborCityNumber() { return m_NeighborCityNumber; }
+	ListNode* GetNextNode() const { return m_NextNode; }
 };

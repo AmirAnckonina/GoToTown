@@ -2,27 +2,17 @@
 
 AccessibleGroup::AccessibleGroup()
 {
-	//m_AccessibleCitiesListNoPtr = nullptr;
-	m_ListLen = 0;
-	m_HeadListInd = m_HeadFreeInd = 0;
-	m_TailListInd = m_TailFreeInd = 0;
-}
-
-AccessibleGroup::AccessibleGroup(int i_NumOfCitiesInCountry)
-{
-	m_ListLen = 0; 
-	m_HeadFreeInd = 0;
-	m_TailFreeInd = i_NumOfCitiesInCountry - 1;
 	m_HeadListInd = m_TailListInd = EMPTY;
-	m_AccessibleCitiesListNoPtr.reserve(i_NumOfCitiesInCountry);
+	m_HeadFreeInd = m_TailFreeInd = EMPTY;
 }
 
-AccessibleGroup::AccessibleCityNode AccessibleGroup::CreateCityNode(int i_NewCityNumber)
+
+AccessibleGroup::AccessibleCityNode AccessibleGroup::CreateCityNode(int i_CityNumber, int i_NextInd)
 {
 	AccessibleCityNode newCityNode;
 
-	newCityNode.m_CityNumber = i_NewCityNumber;
-	newCityNode.m_NextInd = FULL_FLAG;
+	newCityNode.m_CityNumber = i_CityNumber;
+	newCityNode.m_NextInd = i_NextInd;
 
 	return newCityNode;
 }
@@ -33,11 +23,10 @@ void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 	//Create node
 	AccessibleCityNode newCityNode = CreateCityNode(i_NewCityNumber);
 
-
 	int indToInsert = m_HeadFreeInd; //Temporary index holder
 
 	//No spcace left in the list.
-	if (indToInsert == FULL_FLAG)
+	if (indToInsert == LAST)
 	{
 		cout << "Sorry, there no place in the list";
 		exit(1);
@@ -45,13 +34,46 @@ void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 	}
 
 	if (m_HeadListInd == EMPTY) //List is empty
+	{
 		m_HeadListInd = m_TailListInd = m_HeadFreeInd; //Set new head
+	}
 
-	m_HeadFreeInd = m_AccessibleCitiesListNoPtr[m_HeadFreeInd].m_NextInd; //Set a new HeadFree to the current List.
-	m_AccessibleCitiesListNoPtr[indToInsert] = newCityNode;
-	m_AccessibleCitiesListNoPtr[m_TailListInd].m_NextInd = indToInsert; //Update the tail of the list to point the new node
+	else //In case it's not the first node inserted
+	{
+		m_AccessibleCitiesListArr[m_TailListInd].m_NextInd = indToInsert; //Update the tail of the list to point the new node
+	}
+
+	m_HeadFreeInd = m_AccessibleCitiesListArr[m_HeadFreeInd].m_NextInd; //Set a new HeadFree to the current List.
+	m_AccessibleCitiesListArr[indToInsert] = newCityNode;
 	m_TailListInd = indToInsert; //Update the Tail to be the "just-added" node
+	
+
 }
+
+void AccessibleGroup::InitAccessibleCitiesListArr(int i_NumOfCitiesInCountry)
+{
+	m_HeadFreeInd = 0;
+	m_TailFreeInd = i_NumOfCitiesInCountry - 1;
+
+	for (int i = 0; i < i_NumOfCitiesInCountry ; i++)
+	{
+		AccessibleCityNode newCityNode;
+
+		if ( i == i_NumOfCitiesInCountry - 1)
+			newCityNode = CreateCityNode(NULL);
+		else
+			newCityNode = CreateCityNode(NULL, i + 1);
+
+		m_AccessibleCitiesListArr.push_back(newCityNode);
+	}
+
+}
+
+//void AccessibleGroup::SetHeadFreeAndTailFree(int i_NumOfCitiesInCountry)
+//{
+//	m_HeadFreeInd = 0;
+//	m_TailFreeInd = i_NumOfCitiesInCountry - 1;
+//}
 
 
 
