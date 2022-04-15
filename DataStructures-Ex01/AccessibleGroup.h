@@ -13,7 +13,7 @@ class AccessibleGroup
 {
 public:
 	static constexpr int EMPTY = -10;
-	static constexpr int LAST = -1;
+	static constexpr int ENDOFLIST = -1;
 
 private:
 	struct AccessibleCityNode
@@ -31,7 +31,7 @@ public:
 	AccessibleGroup();
 	//AccessibleGroup(int i_ListLen);
 
-	AccessibleCityNode CreateCityNode(int i_CityNumber, int i_NextInd = LAST);
+	AccessibleCityNode CreateCityNode(int i_CityNumber, int i_NextInd = ENDOFLIST);
 
 	void AddCityToList(int i_NewCityNumber);
 	void InitAccessibleCitiesListArr(int i_NumOfCitiesInCountry);
@@ -45,6 +45,7 @@ public:
 	int GetTailList() { return m_TailListInd; }
 	void SetHeadFree(int i_HeadFree) { m_HeadFreeInd = i_HeadFree; }
 	int GetHeadFree() { return m_HeadFreeInd; }
-	//void allocateList(int i_Len);
+	void PrintListArr() const;
+	
 };
 
