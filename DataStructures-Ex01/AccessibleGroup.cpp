@@ -26,7 +26,7 @@ void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 	int indToInsert = m_HeadFreeInd; //Temporary index holder
 
 	//No spcace left in the list.
-	if (indToInsert == LAST)
+	if (indToInsert == ENDOFLIST)
 	{
 		cout << "Sorry, there no place in the list";
 		exit(1);
@@ -67,6 +67,23 @@ void AccessibleGroup::InitAccessibleCitiesListArr(int i_NumOfCitiesInCountry)
 		m_AccessibleCitiesListArr.push_back(newCityNode);
 	}
 
+}
+
+void AccessibleGroup::PrintListArr() const
+{
+	int currNodeInd = m_HeadListInd;
+
+	if (m_HeadListInd != EMPTY)
+	{
+		std::cout << "The accessible cities list: { ";
+		while (currNodeInd != ENDOFLIST)
+		{
+			std::cout << "(" << m_AccessibleCitiesListArr[currNodeInd].m_CityNumber << ") ";
+			currNodeInd = m_AccessibleCitiesListArr[currNodeInd].m_NextInd;
+		}
+
+		std::cout << "}";	
+	}
 }
 
 //void AccessibleGroup::SetHeadFreeAndTailFree(int i_NumOfCitiesInCountry)

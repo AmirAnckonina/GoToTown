@@ -8,7 +8,11 @@ void FindPathsProgram::run()
 	m_CitiesColorsRecursion = BuildCitiesColorsArr();
 	m_AccessGrpRecursion.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
 	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
-	m_CitiesColorsIterative = BuildCitiesColorsArr();
+	m_AccessGrpRecursion.PrintListArr();
+
+
+
+	//m_CitiesColorsIterative = BuildCitiesColorsArr();
 	//GetToTownIterative();
 
 	//GetToTown
@@ -40,7 +44,7 @@ void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
 
 	while (currNodeInAdjCity != NULL) 
 	{
-		neighborCityNum = currNodeInAdjCity->GetNeighborCityNumber();
+		neighborCityNum = currNodeInAdjCity->GetCityNumber();
 		if (m_CitiesColorsRecursion[neighborCityNum - 1] == eColors::WHITE)
 		{
 			GetToTownRecursion( m_Country.GetCityFromCountryStructure(neighborCityNum) );
@@ -56,6 +60,7 @@ void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
 void FindPathsProgram::InputProcedure()
 {
 	vector<pair<int, int>> cityPairs;
+
 	GetNumOfCitiesAndRoads();
 	m_Country.AssignCountryStructure();
 	InitCityPairsRoadsFromUser(cityPairs, m_Country.GetNumOfRoads());
@@ -86,7 +91,7 @@ void FindPathsProgram::GetNumOfCitiesAndRoads()
 		InvalidExit();
 }
 
-void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads)
+void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_CityPairs, int i_NumOfRoads)
 {
 	string inputRow;
 	int strIndex = 0;
@@ -101,10 +106,10 @@ void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& i_City
 		int toCity = GetNumberFromIndexInString(inputRow, strIndex);
 
 		//Adding check if the cities is in the country range.
-		if (fromCity == NOT_VALID || toCity == NOT_VALID || IsRoadExist(i_CityPairs, { fromCity, toCity }))
+		if (fromCity == NOT_VALID || toCity == NOT_VALID || IsRoadExist(io_CityPairs, { fromCity, toCity }))
 			InvalidExit();
 		else
-			i_CityPairs.push_back({ fromCity, toCity });
+			io_CityPairs.push_back({ fromCity, toCity });
 	}
 }
 

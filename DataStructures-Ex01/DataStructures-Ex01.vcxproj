@@ -144,8 +144,10 @@
     <ClInclude Include="City.h" />
     <ClInclude Include="Country.h" />
     <ClInclude Include="FindPathsProgram.h" />
+    <ClInclude Include="ItemType.h" />
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="MyList.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AccessibleGroup.cpp" />
@@ -153,9 +155,11 @@
     <ClCompile Include="City.cpp" />
     <ClCompile Include="Country.cpp" />
     <ClCompile Include="FindPathsProgram.cpp" />
+    <ClCompile Include="ItemType.cpp" />
     <ClCompile Include="ListNode.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyList.cpp" />
+    <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
