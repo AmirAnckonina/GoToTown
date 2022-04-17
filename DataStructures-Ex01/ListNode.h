@@ -14,5 +14,5 @@ public:
 	ListNode(int i_NeighborCityNumber, ListNode* i_NodePtr = nullptr);
 
 	int GetCityNumber() { return m_CityNumber; }
-	ListNode* GetNextNode() const { return m_NextNode; }
+	ListNode* GetNextNode() const { return m_NextNode; } //Should return a ref?
 };

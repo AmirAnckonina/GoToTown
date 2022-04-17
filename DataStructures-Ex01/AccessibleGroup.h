@@ -33,7 +33,7 @@ public:
 
 	AccessibleCityNode CreateCityNode(int i_CityNumber, int i_NextInd = ENDOFLIST);
 
-	void AddCityToList(int i_NewCityNumber);
+	void AddCityToListArr(int i_NewCityNumber);
 	void InitAccessibleCitiesListArr(int i_NumOfCitiesInCountry);
 	//void SetHeadFreeAndTailFree(int i_NumOfCitiesInCountry);
 	//Get-Set

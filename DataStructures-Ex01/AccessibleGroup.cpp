@@ -17,12 +17,11 @@ AccessibleGroup::AccessibleCityNode AccessibleGroup::CreateCityNode(int i_CityNu
 	return newCityNode;
 }
 
-void AccessibleGroup::AddCityToList(int i_NewCityNumber)
+void AccessibleGroup::AddCityToListArr(int i_NewCityNumber)
 {
 	
 	//Create node
 	AccessibleCityNode newCityNode = CreateCityNode(i_NewCityNumber);
-
 	int indToInsert = m_HeadFreeInd; //Temporary index holder
 
 	//No spcace left in the list.

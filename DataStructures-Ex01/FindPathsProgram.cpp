@@ -6,8 +6,10 @@ void FindPathsProgram::run()
 	InputProcedure();
 
 	m_CitiesColorsRecursion = BuildCitiesColorsArr();
+
 	m_AccessGrpRecursion.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
-	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
+
+	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenterNumber));
 	m_AccessGrpRecursion.PrintListArr();
 
 
@@ -35,12 +37,12 @@ eColors* FindPathsProgram::BuildCitiesColorsArr()
 void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
 {
 	int currCityNum = i_CurrCityCenter.GetCityNumber();
-	MyList cityAdjacentList = i_CurrCityCenter.GetAdjacentCitiesList();
+	MyList cityAdjacentList = i_CurrCityCenter.GetAdjacentCitiesList(); //Consider return a ref?
 	ListNode* currNodeInAdjCity = cityAdjacentList.GetDHead()->GetNextNode();
 	int neighborCityNum;
 
 	m_CitiesColorsRecursion[currCityNum - 1] = eColors::BLACK;
-	m_AccessGrpRecursion.AddCityToList(currCityNum);
+	m_AccessGrpRecursion.AddCityToListArr(currCityNum);
 
 	while (currNodeInAdjCity != NULL) 
 	{
@@ -124,7 +126,7 @@ void FindPathsProgram::GetCityCenterNumberFromUser()
 	int cityCenterNum = GetNumberFromIndexInString(inputRow, index); // Needs to be VALID
 
 	if (cityCenterNum != NOT_VALID && IsNumInRange(cityCenterNum, 1, m_Country.GetNumOfCities()))
-		m_CityCenter = cityCenterNum;
+		m_CityCenterNumber = cityCenterNum;
 	else
 		InvalidExit();
 

@@ -18,7 +18,7 @@ public:
 
 private:
 	Country m_Country;
-	int m_CityCenter;
+	int m_CityCenterNumber; 
 	AccessibleGroup m_AccessGrpRecursion;
 	AccessibleGroup m_AccessGrpIterative;
 	eColors* m_CitiesColorsRecursion;
