@@ -13,5 +13,7 @@ private:
 public:
 	StackNode() : m_NextNode(nullptr) {}
 	StackNode(ItemType i_NewItem, StackNode* i_NodePtr = nullptr);
+
+
 };
 

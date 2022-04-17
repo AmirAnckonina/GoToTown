@@ -13,12 +13,13 @@ private:
 	//Test
 
 public:
+	MyList();
 	~MyList();
 	void MakeEmpty();
 	bool IsEmpty();
 	void DeleteAfter(ListNode* i_ToDeleteAfter);
 	void InsertAfter(ListNode* i_NewNode, ListNode* i_AfterNode);
-	ListNode* GetDHead() { return m_DHead; }
-	ListNode* GetTail() { return m_Tail; }
+	ListNode* GetDHead() const { return m_DHead; }
+	ListNode* GetTail() const { return m_Tail; }
 	
 };

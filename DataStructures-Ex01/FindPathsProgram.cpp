@@ -10,10 +10,10 @@ void FindPathsProgram::run()
 	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
 	m_AccessGrpRecursion.PrintListArr();
 
+	m_CitiesColorsIterative = BuildCitiesColorsArr();
+	GetToTownIterative();
 
 
-	//m_CitiesColorsIterative = BuildCitiesColorsArr();
-	//GetToTownIterative();
 
 	//GetToTown
 
@@ -56,6 +56,64 @@ void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
 	return;
 }
 
+void FindPathsProgram::GetToTownIterative()
+{
+	//We should create new ItemType. then when push it or pop it to the stack, the STACK should be
+	// responsible for creating the stack node.
+	// For us, it should be transparent what is the type in the stack 
+
+	Stack itemsStack;
+	//ListNode* currNodeInAdjCity = nullptr;
+	ListNode* currNodeInAdjCity = m_Country.GetCityFromCountryStructure(m_CityCenter).GetAdjacentCitiesList().GetDHead()->GetNextNode();
+	ItemType curr(m_Country.GetCityFromCountryStructure(m_CityCenter), currNodeInAdjCity, eLine::START);
+	//MyList cityAdjacentList;
+
+	itemsStack.Push(curr);
+
+	while (!itemsStack.IsEmpty())
+	{
+		curr = itemsStack.Pop();
+
+		if (curr.GetCurrLine() == eLine::START)
+		{
+			if (m_CitiesColorsIterative[(curr.GetCityCenter().GetCityNumber() - 1)] == eColors::WHITE)
+			{
+				// Make BLACK && Add to AccessibleCities
+				m_CitiesColorsIterative[(curr.GetCityCenter().GetCityNumber() - 1)] = eColors::BLACK;
+				m_AccessGrpIterative.AddCityToList(curr.GetCityCenter().GetCityNumber());
+				currNodeInAdjCity = curr.GetCityCenter().GetAdjacentCitiesList().GetDHead()->GetNextNode();
+
+				//Execute "Recursion" only if the adjCityNode isn't NULL
+				if (currNodeInAdjCity != NULL) //Might be nullptr?
+				{
+					curr.SetCurrLine(eLine::AFTER_REC);
+					itemsStack.Push(curr);
+
+					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+					itemsStack.Push(next);
+				}
+			}
+		}
+
+		else if (curr.GetCurrLine() == eLine::AFTER_REC)
+		{
+			//Check whteher the nextNode is NULL.
+			if (curr.GetCurrAdjCityNode()->GetNextNode() != NULL)
+			{	
+				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
+				curr.SetCurrAdjCityNode(currNodeInAdjCity); //Already with the correct City and Line.
+				itemsStack.Push(curr);
+				ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+				itemsStack.Push(next);
+			}
+
+		}
+	}
+
+	
+
+	
+}
 
 void FindPathsProgram::InputProcedure()
 {
@@ -150,7 +208,6 @@ int FindPathsProgram::GetNumberFromIndexInString(string i_Str, int& io_Index)
 
 	return num;
 }
-
 
 bool FindPathsProgram::IsADigit(char i_Char)
 {

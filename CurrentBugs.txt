@@ -1,2 +1,6 @@
-input of 10 16  -> Looks like we can't handle 2-digit numbers? (Case 3,4)
 input of city which not in range (Case 2 Error)
+
+
+7
+
+2 9
