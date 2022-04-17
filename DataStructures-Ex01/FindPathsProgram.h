@@ -5,6 +5,8 @@
 #include <string>
 #include "Country.h"
 #include "AccessibleGroup.h"
+#include "Stack.h"
+#include "ItemType.h"
 
 
 

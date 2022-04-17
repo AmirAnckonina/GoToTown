@@ -143,6 +143,7 @@
     <ClInclude Include="AccessibleCityNode.h" />
     <ClInclude Include="City.h" />
     <ClInclude Include="Country.h" />
+    <ClInclude Include="eLine.h" />
     <ClInclude Include="FindPathsProgram.h" />
     <ClInclude Include="ItemType.h" />
     <ClInclude Include="ListNode.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="AccessibleGroup.cpp" />
     <ClCompile Include="AccessibleCityNode.cpp" />
     <ClCompile Include="City.cpp" />
+    <ClCompile Include="CopyTemp.cpp" />
     <ClCompile Include="Country.cpp" />
     <ClCompile Include="FindPathsProgram.cpp" />
     <ClCompile Include="ItemType.cpp" />

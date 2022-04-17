@@ -5,7 +5,7 @@
 class Stack
 {
 private:
-	StackNode* m_Top;
+	StackNode * m_Top;
 
 public:
 	Stack() { m_Top = nullptr; } // Necessary?

@@ -6,3 +6,4 @@ StackNode::StackNode(ItemType i_NewItem, StackNode* i_NodePtr)
 	m_NextNode = i_NodePtr;
 }
 
+

@@ -8,6 +8,7 @@ bool Stack::IsEmpty()
 void Stack::MakeEmpty()
 {
 	StackNode* temp;
+
 	while (m_Top != nullptr)
 	{
 		temp = m_Top;
@@ -24,15 +25,15 @@ void Stack::Push(ItemType i_NewItem)
 ItemType Stack::Pop()
 {
 	if (IsEmpty())
-		StackError(); //Needs to handle error
+		StackError(); 
 
-	StackNode* temp = m_Top;
-	ItemType item = m_Top->m_Item;
+	StackNode * temp = m_Top;
+	ItemType item = m_Top->m_Item; //?
+
 	m_Top = m_Top->m_NextNode;
-
 	delete(temp);
 
-	return item;
+	return item;;
 }
 
 void Stack::StackError()
