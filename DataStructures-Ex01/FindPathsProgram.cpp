@@ -171,7 +171,7 @@ bool FindPathsProgram::IsNumInRange(int i_Num, int i_From, int i_To) {
 	return (i_Num >= i_From && i_Num <= i_To);
 }
 
-void  FindPathsProgram::InvalidExit()
+void FindPathsProgram::InvalidExit()
 {
 	cout << "invalid input" << endl;
 	exit(0);

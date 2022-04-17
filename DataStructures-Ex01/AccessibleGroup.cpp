@@ -19,7 +19,7 @@ AccessibleGroup::AccessibleCityNode AccessibleGroup::CreateCityNode(int i_CityNu
 
 void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 {
-	
+
 	//Create node
 	AccessibleCityNode newCityNode = CreateCityNode(i_NewCityNumber);
 
@@ -46,7 +46,7 @@ void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 	m_HeadFreeInd = m_AccessibleCitiesListArr[m_HeadFreeInd].m_NextInd; //Set a new HeadFree to the current List.
 	m_AccessibleCitiesListArr[indToInsert] = newCityNode;
 	m_TailListInd = indToInsert; //Update the Tail to be the "just-added" node
-	
+
 
 }
 
@@ -55,11 +55,11 @@ void AccessibleGroup::InitAccessibleCitiesListArr(int i_NumOfCitiesInCountry)
 	m_HeadFreeInd = 0;
 	m_TailFreeInd = i_NumOfCitiesInCountry - 1;
 
-	for (int i = 0; i < i_NumOfCitiesInCountry ; i++)
+	for (int i = 0; i < i_NumOfCitiesInCountry; i++)
 	{
 		AccessibleCityNode newCityNode;
 
-		if ( i == i_NumOfCitiesInCountry - 1)
+		if (i == i_NumOfCitiesInCountry - 1)
 			newCityNode = CreateCityNode(NULL);
 		else
 			newCityNode = CreateCityNode(NULL, i + 1);
@@ -82,7 +82,7 @@ void AccessibleGroup::PrintListArr() const
 			currNodeInd = m_AccessibleCitiesListArr[currNodeInd].m_NextInd;
 		}
 
-		std::cout << "}";	
+		std::cout << "}" << endl;
 	}
 }
 
