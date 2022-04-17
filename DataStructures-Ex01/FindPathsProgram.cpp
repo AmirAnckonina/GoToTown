@@ -42,12 +42,12 @@ void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
 	m_CitiesColorsRecursion[currCityNum - 1] = eColors::BLACK;
 	m_AccessGrpRecursion.AddCityToList(currCityNum);
 
-	while (currNodeInAdjCity != NULL) 
+	while (currNodeInAdjCity != NULL)
 	{
 		neighborCityNum = currNodeInAdjCity->GetCityNumber();
 		if (m_CitiesColorsRecursion[neighborCityNum - 1] == eColors::WHITE)
 		{
-			GetToTownRecursion( m_Country.GetCityFromCountryStructure(neighborCityNum) );
+			GetToTownRecursion(m_Country.GetCityFromCountryStructure(neighborCityNum));
 		}
 
 		currNodeInAdjCity = currNodeInAdjCity->GetNextNode();
@@ -106,9 +106,9 @@ void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_Cit
 		int toCity = GetNumberFromIndexInString(inputRow, strIndex);
 
 		//Adding check if the cities is in the country range.
-		if (fromCity == NOT_VALID || toCity == NOT_VALID || IsRoadExist(io_CityPairs, { fromCity, toCity }))
+		if (fromCity == NOT_VALID || toCity == NOT_VALID)
 			InvalidExit();
-		else
+		else if (!IsRoadExist(io_CityPairs, { fromCity, toCity }))
 			io_CityPairs.push_back({ fromCity, toCity });
 	}
 }
