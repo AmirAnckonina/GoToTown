@@ -16,5 +16,7 @@ public:
 	void Push(ItemType i_NewItem);
 	ItemType Pop();
 	ItemType Top() { return m_Top->m_Item; }
+
+	void StackError();
 };
 

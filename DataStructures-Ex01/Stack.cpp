@@ -24,7 +24,7 @@ void Stack::Push(ItemType i_NewItem)
 ItemType Stack::Pop()
 {
 	if (IsEmpty())
-		return;
+		StackError(); //Needs to handle error
 
 	StackNode* temp = m_Top;
 	ItemType item = m_Top->m_Item;
@@ -33,4 +33,10 @@ ItemType Stack::Pop()
 	delete(temp);
 
 	return item;
+}
+
+void Stack::StackError()
+{
+	std::cout << "Invalid procedure!" << std::endl;
+	exit(0);
 }
