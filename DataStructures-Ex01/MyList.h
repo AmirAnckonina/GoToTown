@@ -8,9 +8,9 @@ class MyList
 {
 
 private:
-	ListNode* m_DHead; // = new ListNode();
-	ListNode* m_Tail; // = m_DHead; //Check! -Added for the first adding to list 
-	//Test
+	ListNode* m_DHead; 
+	ListNode* m_Tail; 
+
 
 public:
 	MyList();
