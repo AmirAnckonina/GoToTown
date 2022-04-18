@@ -10,7 +10,7 @@ private:
 
 public:
 
-	ListNode() : m_NextNode(nullptr) {}
+	ListNode() : m_CityNumber(0), m_NextNode(nullptr) {}
 	ListNode(int i_NeighborCityNumber, ListNode* i_NodePtr = nullptr);
 
 	int GetCityNumber() { return m_CityNumber; }

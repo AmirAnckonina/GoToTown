@@ -32,7 +32,7 @@ public:
 	void InputProcedure();
 	//void BuildCitiesColorsArr(eColors& i_CitiesColors);
 	eColors* BuildCitiesColorsArr();
-	void GetToTownRecursion(const City& i_CurrCityCenter);
+	void GetToTownRecursion(const City* i_CurrCityCenter);
 	void GetToTownIterative();
 	void GetNumOfCitiesAndRoads();
 	void InitCityPairsRoadsFromUser(vector<pair<int, int>>& i_CityPairs, int i_NumOfRoads);
