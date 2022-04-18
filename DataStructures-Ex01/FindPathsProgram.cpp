@@ -157,7 +157,8 @@ void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_Cit
 		int fromCity = GetNumberFromIndexInString(inputRow, strIndex);
 		int toCity = GetNumberFromIndexInString(inputRow, strIndex);
 
-		//Adding check if the cities is in the country range.
+		//Add Test whether fromCity And toCity are in country cities range.
+ 
 		if (fromCity == NOT_VALID || toCity == NOT_VALID)
 			InvalidExit();
 		else if (!IsRoadExist(io_CityPairs, { fromCity, toCity })) //If both are valid
