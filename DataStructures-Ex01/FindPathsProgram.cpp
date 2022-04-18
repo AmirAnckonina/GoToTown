@@ -56,15 +56,9 @@ void FindPathsProgram::GetToTownRecursion(const City* i_CurrCityCenter)
 
 void FindPathsProgram::GetToTownIterative()
 {
-	//We should create new ItemType. then when push it or pop it to the stack, the STACK should be
-	// responsible for creating the stack node.
-	// For us, it should be transparent what is the type in the stack 
-
 	Stack itemsStack;
-	//ListNode* currNodeInAdjCity = nullptr;
-	ListNode* currNodeInAdjCity = m_Country.GetCityFromCountryStructure(m_CityCenter)->GetAdjacentCitiesList()->GetDHead()->GetNextNode();
+	ListNode* currNodeInAdjCity = m_Country.GetCityFromCountryStructure(m_CityCenter)->GetAdjacentCitiesList()->GetDHead();
 	ItemType curr(m_Country.GetCityFromCountryStructure(m_CityCenter), currNodeInAdjCity, eLine::START);
-	//MyList cityAdjacentList;
 
 	itemsStack.Push(curr);
 
@@ -79,7 +73,7 @@ void FindPathsProgram::GetToTownIterative()
 				// Make BLACK && Add to AccessibleCities
 				m_CitiesColorsIterative[(curr.GetCityCenter().GetCityNumber() - 1)] = eColors::BLACK;
 				m_AccessGrpIterative.AddCityToList(curr.GetCityCenter().GetCityNumber());
-				currNodeInAdjCity = curr.GetCityCenter().GetAdjacentCitiesList()->GetDHead()->GetNextNode();
+				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
 
 				//Execute "Recursion" only if the adjCityNode isn't NULL
 				if (currNodeInAdjCity != NULL) //Might be nullptr?
@@ -87,7 +81,8 @@ void FindPathsProgram::GetToTownIterative()
 					curr.SetCurrLine(eLine::AFTER_REC);
 					itemsStack.Push(curr);
 
-					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), 
+						m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber())->GetAdjacentCitiesList()->GetDHead(), eLine::START);
 					itemsStack.Push(next);
 				}
 			}
@@ -101,7 +96,8 @@ void FindPathsProgram::GetToTownIterative()
 				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
 				curr.SetCurrAdjCityNode(currNodeInAdjCity); //Already with the correct City and Line.
 				itemsStack.Push(curr);
-				ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+				ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()),
+					m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber())->GetAdjacentCitiesList()->GetDHead(), eLine::START);
 				itemsStack.Push(next);
 			}
 
