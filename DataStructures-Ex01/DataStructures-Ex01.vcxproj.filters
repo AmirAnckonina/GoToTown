@@ -83,8 +83,5 @@
     <ClCompile Include="StackNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CopyTemp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

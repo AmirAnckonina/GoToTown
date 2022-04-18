@@ -3,7 +3,7 @@
 MyList::MyList()
 {
 	m_DHead = new ListNode();
-	ListNode* m_Tail = m_DHead;
+	m_Tail = m_DHead;
 }
 
 MyList::~MyList()
