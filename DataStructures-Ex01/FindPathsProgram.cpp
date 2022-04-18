@@ -10,6 +10,11 @@ void FindPathsProgram::run()
 	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
 	m_AccessGrpRecursion.PrintListArr();
 
+	m_CitiesColorsIterative = BuildCitiesColorsArr();
+	m_AccessGrpIterative.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
+	GetToTownIterative();
+	m_AccessGrpIterative.PrintListArr();
+
 	/*m_CitiesColorsIterative = BuildCitiesColorsArr();
 	GetToTownIterative();*/
 
@@ -35,8 +40,8 @@ eColors* FindPathsProgram::BuildCitiesColorsArr()
 void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
 {
 	int currCityNum = i_CurrCityCenter.GetCityNumber();
-	MyList cityAdjacentList = i_CurrCityCenter.GetAdjacentCitiesList();
-	ListNode* currNodeInAdjCity = cityAdjacentList.GetDHead()->GetNextNode();
+	//MyList cityAdjacentList = i_CurrCityCenter.GetAdjacentCitiesList();
+	ListNode* currNodeInAdjCity = i_CurrCityCenter.GetAdjacentCitiesList().GetDHead()->GetNextNode();
 	int neighborCityNum;
 
 	m_CitiesColorsRecursion[currCityNum - 1] = eColors::BLACK;
@@ -64,10 +69,10 @@ void FindPathsProgram::GetToTownIterative()
 
 	Stack itemsStack;
 	//ListNode* currNodeInAdjCity = nullptr;
-	ListNode* currNodeInAdjCity = m_Country.GetCityFromCountryStructure(m_CityCenter).GetAdjacentCitiesList().GetDHead()->GetNextNode();
+	City currCity = m_Country.GetCityFromCountryStructure(m_CityCenter);
+	ListNode* currNodeInAdjCity = currCity.GetAdjacentCitiesList().GetDHead()->GetNextNode();
 	ItemType curr(&m_Country.GetCityFromCountryStructure(m_CityCenter), currNodeInAdjCity, eLine::START);
 	//MyList cityAdjacentList;
-
 	itemsStack.Push(curr);
 
 	while (!itemsStack.IsEmpty())
@@ -99,7 +104,7 @@ void FindPathsProgram::GetToTownIterative()
 		{
 			//Check whteher the nextNode is NULL.
 			if (curr.GetCurrAdjCityNode()->GetNextNode() != NULL)
-			{	
+			{
 				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
 				curr.SetCurrAdjCityNode(currNodeInAdjCity); //Already with the correct City and Line.
 				itemsStack.Push(curr);
@@ -110,9 +115,9 @@ void FindPathsProgram::GetToTownIterative()
 		}
 	}
 
-	
 
-	
+
+
 }
 
 void FindPathsProgram::InputProcedure()

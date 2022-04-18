@@ -10,7 +10,7 @@
 
 
 
-enum class eColors {BLACK, WHITE};
+enum class eColors { BLACK, WHITE };
 
 class FindPathsProgram
 {
