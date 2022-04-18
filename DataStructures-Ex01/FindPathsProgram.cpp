@@ -5,19 +5,17 @@ void FindPathsProgram::run()
 {
 	InputProcedure();
 
+	//<----Recursive------>
 	m_CitiesColorsRecursion = BuildCitiesColorsArr();
 	m_AccessGrpRecursion.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
 	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
 	m_AccessGrpRecursion.PrintListArr();
 
-	/*m_CitiesColorsIterative = BuildCitiesColorsArr();
-	GetToTownIterative();*/
-
-
-
-	//GetToTown
-
-	//Should be returned -> AccessibleCities (namely, Linked-List without pointers)
+	//<----Iterative------>
+	m_CitiesColorsIterative = BuildCitiesColorsArr();
+	m_AccessGrpIterative.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
+	GetToTownIterative();
+	m_AccessGrpIterative.PrintListArr();
 }
 
 eColors* FindPathsProgram::BuildCitiesColorsArr()
@@ -32,11 +30,11 @@ eColors* FindPathsProgram::BuildCitiesColorsArr()
 	return citiesColorsArr;
 }
 
-void FindPathsProgram::GetToTownRecursion(const City& i_CurrCityCenter)
+void FindPathsProgram::GetToTownRecursion(const City* i_CurrCityCenter)
 {
-	int currCityNum = i_CurrCityCenter.GetCityNumber();
-	MyList cityAdjacentList = i_CurrCityCenter.GetAdjacentCitiesList();
-	ListNode* currNodeInAdjCity = cityAdjacentList.GetDHead()->GetNextNode();
+	int currCityNum = i_CurrCityCenter->GetCityNumber();
+	const MyList* cityAdjacentList = i_CurrCityCenter->GetAdjacentCitiesList();
+	ListNode* currNodeInAdjCity = cityAdjacentList->GetDHead()->GetNextNode();
 	int neighborCityNum;
 
 	m_CitiesColorsRecursion[currCityNum - 1] = eColors::BLACK;
@@ -64,8 +62,8 @@ void FindPathsProgram::GetToTownIterative()
 
 	Stack itemsStack;
 	//ListNode* currNodeInAdjCity = nullptr;
-	ListNode* currNodeInAdjCity = m_Country.GetCityFromCountryStructure(m_CityCenter).GetAdjacentCitiesList().GetDHead()->GetNextNode();
-	ItemType curr(&m_Country.GetCityFromCountryStructure(m_CityCenter), currNodeInAdjCity, eLine::START);
+	ListNode* currNodeInAdjCity = m_Country.GetCityFromCountryStructure(m_CityCenter)->GetAdjacentCitiesList()->GetDHead()->GetNextNode();
+	ItemType curr(m_Country.GetCityFromCountryStructure(m_CityCenter), currNodeInAdjCity, eLine::START);
 	//MyList cityAdjacentList;
 
 	itemsStack.Push(curr);
@@ -81,7 +79,7 @@ void FindPathsProgram::GetToTownIterative()
 				// Make BLACK && Add to AccessibleCities
 				m_CitiesColorsIterative[(curr.GetCityCenter().GetCityNumber() - 1)] = eColors::BLACK;
 				m_AccessGrpIterative.AddCityToList(curr.GetCityCenter().GetCityNumber());
-				currNodeInAdjCity = curr.GetCityCenter().GetAdjacentCitiesList().GetDHead()->GetNextNode();
+				currNodeInAdjCity = curr.GetCityCenter().GetAdjacentCitiesList()->GetDHead()->GetNextNode();
 
 				//Execute "Recursion" only if the adjCityNode isn't NULL
 				if (currNodeInAdjCity != NULL) //Might be nullptr?
@@ -89,7 +87,7 @@ void FindPathsProgram::GetToTownIterative()
 					curr.SetCurrLine(eLine::AFTER_REC);
 					itemsStack.Push(curr);
 
-					ItemType next(&m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
 					itemsStack.Push(next);
 				}
 			}
@@ -103,7 +101,7 @@ void FindPathsProgram::GetToTownIterative()
 				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
 				curr.SetCurrAdjCityNode(currNodeInAdjCity); //Already with the correct City and Line.
 				itemsStack.Push(curr);
-				ItemType next(&m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+				ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
 				itemsStack.Push(next);
 			}
 

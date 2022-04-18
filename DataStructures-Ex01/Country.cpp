@@ -1,5 +1,12 @@
 #include "Country.h"
 
+Country::Country()
+{
+	m_NumOfCities = 0;
+	m_NumOfRoads = 0;
+	m_CountryStructure = nullptr;
+}
+
 Country::Country(int i_NumOfCities, int i_NumOfRoads)
 {
 	m_NumOfCities = i_NumOfCities;
@@ -30,8 +37,8 @@ void Country::FillCountryStructureByCityPairs(vector<pair<int, int>> i_CityPairs
 		{
 			//MyList currCityList = m_CountryStructure[fromCityNum - 1].m_AdjacentCities; // Getting the adjacent cities list of current city.
 			ListNode* newCityNode = new ListNode(toCityNum); // New list node contain the ajdacent city number.
-			ListNode* currAdjCityTail = m_CountryStructure[fromCityNum - 1].m_AdjacentCities.GetTail();
-			m_CountryStructure[fromCityNum - 1].m_AdjacentCities.InsertAfter(newCityNode, currAdjCityTail); // Adding the adjacent city to the current adjacent cities list.
+			ListNode* currAdjCityTail = m_CountryStructure[fromCityNum - 1].GetAdjacentCitiesList()->GetTail();
+			m_CountryStructure[fromCityNum - 1].AddAdjacentCityToList(newCityNode, currAdjCityTail); // Adding the adjacent city to the current adjacent cities list.
 		}
 	}
 }

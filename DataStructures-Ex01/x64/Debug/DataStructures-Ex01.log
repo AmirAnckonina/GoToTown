@@ -1,3 +1,4 @@
-﻿  FindPathsProgram.cpp
-C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\DataStructersEx01\DataStructures-Ex01\FindPathsProgram.cpp(194,29): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  City.cpp
+  MyList.cpp
+  Generating Code...
   DataStructures-Ex01.vcxproj -> C:\Users\amira\OneDrive - The Academic College of Tel-Aviv Jaffa - MTA\Data Structures\DataStructersEx01\x64\Debug\DataStructures-Ex01.exe
