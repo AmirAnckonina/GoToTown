@@ -10,8 +10,8 @@ void FindPathsProgram::run()
 	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
 	m_AccessGrpRecursion.PrintListArr();
 
-	m_CitiesColorsIterative = BuildCitiesColorsArr();
-	GetToTownIterative();
+	/*m_CitiesColorsIterative = BuildCitiesColorsArr();
+	GetToTownIterative();*/
 
 
 
@@ -65,7 +65,7 @@ void FindPathsProgram::GetToTownIterative()
 	Stack itemsStack;
 	//ListNode* currNodeInAdjCity = nullptr;
 	ListNode* currNodeInAdjCity = m_Country.GetCityFromCountryStructure(m_CityCenter).GetAdjacentCitiesList().GetDHead()->GetNextNode();
-	ItemType curr(m_Country.GetCityFromCountryStructure(m_CityCenter), currNodeInAdjCity, eLine::START);
+	ItemType curr(&m_Country.GetCityFromCountryStructure(m_CityCenter), currNodeInAdjCity, eLine::START);
 	//MyList cityAdjacentList;
 
 	itemsStack.Push(curr);
@@ -89,7 +89,7 @@ void FindPathsProgram::GetToTownIterative()
 					curr.SetCurrLine(eLine::AFTER_REC);
 					itemsStack.Push(curr);
 
-					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+					ItemType next(&m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
 					itemsStack.Push(next);
 				}
 			}
@@ -103,7 +103,7 @@ void FindPathsProgram::GetToTownIterative()
 				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
 				curr.SetCurrAdjCityNode(currNodeInAdjCity); //Already with the correct City and Line.
 				itemsStack.Push(curr);
-				ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
+				ItemType next(&m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), currNodeInAdjCity, eLine::START);
 				itemsStack.Push(next);
 			}
 
@@ -166,7 +166,7 @@ void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_Cit
 		//Adding check if the cities is in the country range.
 		if (fromCity == NOT_VALID || toCity == NOT_VALID)
 			InvalidExit();
-		else if (!IsRoadExist(io_CityPairs, { fromCity, toCity }))
+		else if (!IsRoadExist(io_CityPairs, { fromCity, toCity })) //If both are valid
 			io_CityPairs.push_back({ fromCity, toCity });
 	}
 }

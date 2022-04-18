@@ -8,8 +8,8 @@ class MyList
 {
 
 private:
-	ListNode* m_DHead = new ListNode();
-	ListNode* m_Tail = m_DHead; //Check! -Added for the first adding to list 
+	ListNode* m_DHead; // = new ListNode();
+	ListNode* m_Tail; // = m_DHead; //Check! -Added for the first adding to list 
 	//Test
 
 public:

@@ -155,7 +155,6 @@
     <ClCompile Include="AccessibleGroup.cpp" />
     <ClCompile Include="AccessibleCityNode.cpp" />
     <ClCompile Include="City.cpp" />
-    <ClCompile Include="CopyTemp.cpp" />
     <ClCompile Include="Country.cpp" />
     <ClCompile Include="FindPathsProgram.cpp" />
     <ClCompile Include="ItemType.cpp" />
