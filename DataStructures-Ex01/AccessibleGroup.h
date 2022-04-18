@@ -45,7 +45,7 @@ public:
 	int GetTailList() { return m_TailListInd; }
 	void SetHeadFree(int i_HeadFree) { m_HeadFreeInd = i_HeadFree; }
 	int GetHeadFree() { return m_HeadFreeInd; }
-	void PrintListArr() const;
-	
+	void PrintListArr(bool i_IsIterativePrint, int i_CityCenter) const;
+
 };
 

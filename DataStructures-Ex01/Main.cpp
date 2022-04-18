@@ -1,6 +1,6 @@
 #include "FindPathsProgram.h"
 
-void main()
+int main()
 {
 	FindPathsProgram program;
 

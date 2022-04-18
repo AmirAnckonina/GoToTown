@@ -60,29 +60,32 @@ void AccessibleGroup::InitAccessibleCitiesListArr(int i_NumOfCitiesInCountry)
 		AccessibleCityNode newCityNode;
 
 		if (i == i_NumOfCitiesInCountry - 1)
-			newCityNode = CreateCityNode(NULL);
+			newCityNode = CreateCityNode(0);
 		else
-			newCityNode = CreateCityNode(NULL, i + 1);
+			newCityNode = CreateCityNode(0, i + 1);
 
 		m_AccessibleCitiesListArr.push_back(newCityNode);
 	}
 
 }
 
-void AccessibleGroup::PrintListArr() const
+void AccessibleGroup::PrintListArr(bool i_IsIterativePrint, int i_CityCenter) const
 {
 	int currNodeInd = m_HeadListInd;
 
 	if (m_HeadListInd != EMPTY)
 	{
-		std::cout << "The accessible cities list: { ";
+		if (i_IsIterativePrint)
+			std::cout << "Cities accessible from city source city " << i_CityCenter << " (iterative algorithm): ";
+		else
+			std::cout << "Cities accessible from source city " << i_CityCenter << " (recursive algorithm): ";
+
 		while (currNodeInd != ENDOFLIST)
 		{
-			std::cout << "(" << m_AccessibleCitiesListArr[currNodeInd].m_CityNumber << ") ";
+			std::cout << m_AccessibleCitiesListArr[currNodeInd].m_CityNumber << " ";
 			currNodeInd = m_AccessibleCitiesListArr[currNodeInd].m_NextInd;
 		}
-
-		std::cout << "}" << endl;
+		std::cout << endl;
 	}
 }
 

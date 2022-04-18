@@ -9,13 +9,13 @@ void FindPathsProgram::run()
 	m_CitiesColorsRecursion = BuildCitiesColorsArr();
 	m_AccessGrpRecursion.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
 	GetToTownRecursion(m_Country.GetCityFromCountryStructure(m_CityCenter));
-	m_AccessGrpRecursion.PrintListArr();
+	m_AccessGrpRecursion.PrintListArr(false, m_CityCenter);
 
 	//<----Iterative------>
 	m_CitiesColorsIterative = BuildCitiesColorsArr();
 	m_AccessGrpIterative.InitAccessibleCitiesListArr(m_Country.GetNumOfCities());
 	GetToTownIterative();
-	m_AccessGrpIterative.PrintListArr();
+	m_AccessGrpIterative.PrintListArr(true, m_CityCenter);
 }
 
 eColors* FindPathsProgram::BuildCitiesColorsArr()
@@ -81,7 +81,7 @@ void FindPathsProgram::GetToTownIterative()
 					curr.SetCurrLine(eLine::AFTER_REC);
 					itemsStack.Push(curr);
 
-					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), 
+					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()),
 						m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber())->GetAdjacentCitiesList()->GetDHead(), eLine::START);
 					itemsStack.Push(next);
 				}
@@ -92,7 +92,7 @@ void FindPathsProgram::GetToTownIterative()
 		{
 			//Check whteher the nextNode is NULL.
 			if (curr.GetCurrAdjCityNode()->GetNextNode() != NULL)
-			{	
+			{
 				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
 				curr.SetCurrAdjCityNode(currNodeInAdjCity); //Already with the correct City and Line.
 				itemsStack.Push(curr);
@@ -103,10 +103,6 @@ void FindPathsProgram::GetToTownIterative()
 
 		}
 	}
-
-	
-
-	
 }
 
 void FindPathsProgram::InputProcedure()
@@ -128,7 +124,7 @@ void FindPathsProgram::GetNumOfCitiesAndRoads()
 	int nCities = 0, mRoads = 0;
 	bool isValidInput = true;
 
-	cout << "Please enter the number of cities in the country, and the number of the roads, separeted by space: " << endl;
+	//cout << "Please enter the number of cities in the country, and the number of the roads, separeted by space: " << endl;
 	getline(cin, inputRow);
 
 	nCities = GetNumberFromIndexInString(inputRow, strIndex);
@@ -146,10 +142,10 @@ void FindPathsProgram::GetNumOfCitiesAndRoads()
 void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_CityPairs, int i_NumOfRoads)
 {
 	string inputRow;
-	int strIndex = 0;
+	int strIndex = 0, checkIfBiggerLine;
 
-	cout << "Please enter " << m_Country.GetNumOfRoads();
-	cout << " pairs of cities (i.e.: A B), so each pair represent one-direction road from A to B: " << endl;
+	//cout << "Please enter " << m_Country.GetNumOfRoads();
+	//cout << " pairs of cities (i.e.: A B), so each pair represent one-direction road from A to B: " << endl;
 	getline(cin, inputRow);
 
 	for (int index = 0; index < i_NumOfRoads; index++)
@@ -157,13 +153,16 @@ void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_Cit
 		int fromCity = GetNumberFromIndexInString(inputRow, strIndex);
 		int toCity = GetNumberFromIndexInString(inputRow, strIndex);
 
-		//Add Test whether fromCity And toCity are in country cities range.
- 
-		if (fromCity == NOT_VALID || toCity == NOT_VALID)
+		if (fromCity == NOT_VALID || toCity == NOT_VALID ||
+			!IsNumInRange(fromCity, 1, m_Country.GetNumOfCities()) || !IsNumInRange(toCity, 1, m_Country.GetNumOfCities()))
 			InvalidExit();
 		else if (!IsRoadExist(io_CityPairs, { fromCity, toCity })) //If both are valid
 			io_CityPairs.push_back({ fromCity, toCity });
 	}
+
+	checkIfBiggerLine = GetNumberFromIndexInString(inputRow, strIndex);
+	if (checkIfBiggerLine != NOT_VALID)
+		InvalidExit();
 }
 
 void FindPathsProgram::GetCityCenterNumberFromUser()
@@ -171,7 +170,7 @@ void FindPathsProgram::GetCityCenterNumberFromUser()
 	string inputRow;
 	int index = 0;
 
-	cout << "Please enter the city center: ";
+	//cout << "Please enter the city center: ";
 	getline(cin, inputRow);
 
 	int cityCenterNum = GetNumberFromIndexInString(inputRow, index); // Needs to be VALID
