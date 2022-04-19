@@ -19,7 +19,6 @@ AccessibleGroup::AccessibleCityNode AccessibleGroup::CreateCityNode(int i_CityNu
 
 void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 {
-
 	//Create node
 	AccessibleCityNode newCityNode = CreateCityNode(i_NewCityNumber);
 
@@ -30,12 +29,11 @@ void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 	{
 		cout << "Sorry, there no place in the list";
 		exit(1);
-		//exception instead ???
 	}
 
 	if (m_HeadListInd == EMPTY) //List is empty
 	{
-		m_HeadListInd = m_TailListInd = m_HeadFreeInd; //Set new head
+		m_HeadListInd = m_TailListInd = m_HeadFreeInd; //Set new headList
 	}
 
 	else //In case it's not the first node inserted
@@ -85,13 +83,5 @@ void AccessibleGroup::PrintListArr() const
 		std::cout << "}" << endl;
 	}
 }
-
-//void AccessibleGroup::SetHeadFreeAndTailFree(int i_NumOfCitiesInCountry)
-//{
-//	m_HeadFreeInd = 0;
-//	m_TailFreeInd = i_NumOfCitiesInCountry - 1;
-//}
-
-
 
 

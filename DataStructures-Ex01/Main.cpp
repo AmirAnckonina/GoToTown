@@ -1,8 +1,14 @@
+// Data Structures - Ex 1 
+// Amir Anckonina 208423491
+// Tal Aharon 208458414
+
+
+
 #include "FindPathsProgram.h"
 
-void main()
+int main()
 {
 	FindPathsProgram program;
-
 	program.run();
+	return 0;
 }

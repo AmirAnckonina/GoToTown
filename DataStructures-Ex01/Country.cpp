@@ -17,7 +17,6 @@ Country::Country(int i_NumOfCities, int i_NumOfRoads)
 void Country::AssignCountryStructure()
 {
 	m_CountryStructure = new City[m_NumOfCities];
-
 	//Fill cities numbers in city structure.
 	for (int index = 0; index < m_NumOfCities; index++) 
 		m_CountryStructure[index].SetCityNumber(index + 1); //Cities numbers between 1->n.
@@ -35,7 +34,6 @@ void Country::FillCountryStructureByCityPairs(vector<pair<int, int>> i_CityPairs
 
 		if (currRoad != nullRoad)
 		{
-			//MyList currCityList = m_CountryStructure[fromCityNum - 1].m_AdjacentCities; // Getting the adjacent cities list of current city.
 			ListNode* newCityNode = new ListNode(toCityNum); // New list node contain the ajdacent city number.
 			ListNode* currAdjCityTail = m_CountryStructure[fromCityNum - 1].GetAdjacentCitiesList()->GetTail();
 			m_CountryStructure[fromCityNum - 1].AddAdjacentCityToList(newCityNode, currAdjCityTail); // Adding the adjacent city to the current adjacent cities list.

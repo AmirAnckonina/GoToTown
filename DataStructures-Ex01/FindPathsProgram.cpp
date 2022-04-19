@@ -3,6 +3,10 @@
 
 void FindPathsProgram::run()
 {
+	//This function at first run the recursive solution, then the iterative one.
+	//Each solution has it own data members.
+	//Note that the accessibleCities list is a DATA-MEMBER which updated during the functions, and NOT "returned" from the functions.
+
 	InputProcedure();
 
 	//<----Recursive------>
@@ -76,11 +80,10 @@ void FindPathsProgram::GetToTownIterative()
 				currNodeInAdjCity = curr.GetCurrAdjCityNode()->GetNextNode();
 
 				//Execute "Recursion" only if the adjCityNode isn't NULL
-				if (currNodeInAdjCity != NULL) //Might be nullptr?
+				if (currNodeInAdjCity != NULL) 
 				{
 					curr.SetCurrLine(eLine::AFTER_REC);
 					itemsStack.Push(curr);
-
 					ItemType next(m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber()), 
 						m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber())->GetAdjacentCitiesList()->GetDHead(), eLine::START);
 					itemsStack.Push(next);
@@ -100,13 +103,8 @@ void FindPathsProgram::GetToTownIterative()
 					m_Country.GetCityFromCountryStructure(currNodeInAdjCity->GetCityNumber())->GetAdjacentCitiesList()->GetDHead(), eLine::START);
 				itemsStack.Push(next);
 			}
-
 		}
 	}
-
-	
-
-	
 }
 
 void FindPathsProgram::InputProcedure()
@@ -156,11 +154,9 @@ void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_Cit
 	{
 		int fromCity = GetNumberFromIndexInString(inputRow, strIndex);
 		int toCity = GetNumberFromIndexInString(inputRow, strIndex);
-
-		//Adding check if the cities is in the country range.
 		if (fromCity == NOT_VALID || toCity == NOT_VALID)
 			InvalidExit();
-		else if (!IsRoadExist(io_CityPairs, { fromCity, toCity })) //If both are valid
+		else if (!IsRoadExist(io_CityPairs, { fromCity, toCity })) 
 			io_CityPairs.push_back({ fromCity, toCity });
 	}
 }
