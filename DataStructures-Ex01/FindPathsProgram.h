@@ -8,15 +8,12 @@
 #include "Stack.h"
 #include "ItemType.h"
 
-
-
 enum class eColors {BLACK, WHITE};
 
 class FindPathsProgram
 {
 public:
 	const int NOT_VALID = -1;
-
 
 private:
 	Country m_Country;
@@ -26,11 +23,9 @@ private:
 	eColors* m_CitiesColorsRecursion;
 	eColors* m_CitiesColorsIterative;
 
-
 public:
 	void run();
 	void InputProcedure();
-	//void BuildCitiesColorsArr(eColors& i_CitiesColors);
 	eColors* BuildCitiesColorsArr();
 	void GetToTownRecursion(const City* i_CurrCityCenter);
 	void GetToTownIterative();
@@ -42,6 +37,5 @@ public:
 	bool IsRoadExist(vector<pair<int, int>> i_CityPairs, pair<int, int> i_RoadPair);
 	bool IsNumInRange(int num, int from, int to);
 	void InvalidExit();
-
 
 };

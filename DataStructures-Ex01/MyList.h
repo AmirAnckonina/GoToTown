@@ -3,14 +3,11 @@
 #include <iostream>
 
 
-
 class MyList
 {
-
 private:
 	ListNode* m_DHead; 
 	ListNode* m_Tail; 
-
 
 public:
 	MyList();

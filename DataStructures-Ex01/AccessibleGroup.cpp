@@ -30,7 +30,6 @@ void AccessibleGroup::AddCityToList(int i_NewCityNumber)
 	{
 		cout << "Sorry, there no place in the list";
 		exit(1);
-		//exception instead ???
 	}
 
 	if (m_HeadListInd == EMPTY) //List is empty
@@ -89,11 +88,6 @@ void AccessibleGroup::PrintListArr(bool i_IsIterativePrint, int i_CityCenter) co
 	}
 }
 
-//void AccessibleGroup::SetHeadFreeAndTailFree(int i_NumOfCitiesInCountry)
-//{
-//	m_HeadFreeInd = 0;
-//	m_TailFreeInd = i_NumOfCitiesInCountry - 1;
-//}
 
 
 

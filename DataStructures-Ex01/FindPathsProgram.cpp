@@ -3,6 +3,10 @@
 
 void FindPathsProgram::run()
 {
+	//This function at first run the recursive solution, then the iterative one.
+	//Each solution has it own data members.
+	//Note that the accessibleCities list is a DATA-MEMBER which updated during the functions, and NOT "returned" from the functions.
+
 	InputProcedure();
 
 	//<----Recursive------>
@@ -124,7 +128,6 @@ void FindPathsProgram::GetNumOfCitiesAndRoads()
 	int nCities = 0, mRoads = 0;
 	bool isValidInput = true;
 
-	//cout << "Please enter the number of cities in the country, and the number of the roads, separeted by space: " << endl;
 	getline(cin, inputRow);
 
 	nCities = GetNumberFromIndexInString(inputRow, strIndex);
@@ -144,8 +147,6 @@ void FindPathsProgram::InitCityPairsRoadsFromUser(vector<pair<int, int>>& io_Cit
 	string inputRow;
 	int strIndex = 0, checkIfBiggerLine;
 
-	//cout << "Please enter " << m_Country.GetNumOfRoads();
-	//cout << " pairs of cities (i.e.: A B), so each pair represent one-direction road from A to B: " << endl;
 	getline(cin, inputRow);
 
 	for (int index = 0; index < i_NumOfRoads; index++)
@@ -170,7 +171,6 @@ void FindPathsProgram::GetCityCenterNumberFromUser()
 	string inputRow;
 	int index = 0;
 
-	//cout << "Please enter the city center: ";
 	getline(cin, inputRow);
 
 	int cityCenterNum = GetNumberFromIndexInString(inputRow, index); // Needs to be VALID

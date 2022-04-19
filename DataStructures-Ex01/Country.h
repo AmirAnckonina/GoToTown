@@ -7,7 +7,6 @@ using namespace std;
 
 class Country
 {
-
 private:
 	int m_NumOfCities;
 	int m_NumOfRoads;

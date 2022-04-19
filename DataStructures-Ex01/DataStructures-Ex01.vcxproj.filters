@@ -33,9 +33,6 @@
     <ClInclude Include="AccessibleGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AccessibleCityNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ItemType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,9 +66,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AccessibleGroup.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AccessibleCityNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ItemType.cpp">
