@@ -1,6 +1,0 @@
-input of city which not in range (Case 2 Error)
-
-
-7
-
-2 9
